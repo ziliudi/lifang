@@ -1,0 +1,286 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>恋晶</title>
+    <meta name="language" content="zh-CN">
+    <link rel="icon" type="image/x-icon" href="https://cdn.jsdelivr.net/gh/luvzhaojing/love/logoRGB-FFB3E6.ico">
+    <link rel="stylesheet" href="https://pub-b834d156c0124d6b843f0f4097533829.r2.dev/lifangti/css/program.css">
+    <style>
+        /* 高斯模糊和遮罩层样式 */
+        body {
+            overflow: hidden;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: url('https://example.com/your-background-image.jpg'); /* 替换为你的背景图片 */
+            background-size: cover;
+            background-position: center;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        /* 高斯模糊效果 */
+        .blurred {
+            filter: blur(10px);
+        }
+
+        /* 遮罩层样式 */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 1.5em;
+            z-index: 1000;
+            display: none; /* 初始隐藏 */
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .overlay.show {
+            display: flex;
+        }
+
+        .overlay input {
+            font-size: 1em;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            width: 80%;
+            max-width: 300px;
+        }
+
+        .overlay button {
+            font-size: 1em;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            width: 80%;
+            max-width: 300px;
+        }
+
+        .overlay p {
+            margin: 10px;
+        }
+
+        /* 顶部标题样式 */
+        .title {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        /* 立方体容器样式 */
+        .cube-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        /* 立方体样式 */
+        .cube {
+            width: 250px;
+            height: 250px;
+            transition: transform 0.3s ease;
+            margin: 30px 0; /* 与上下元素保持距离 */
+        }
+
+        .cube:hover {
+            transform: scale(1.2); /* 鼠标悬停时立方体膨胀 */
+        }
+
+        /* 粉色爱心按钮样式 */
+        .heart-button {
+            width: 150px;
+            height: 150px;
+            background-image: url('https://pub-b834d156c0124d6b843f0f4097533829.r2.dev/lifangti/images/xinxingtuan.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            margin: 20px 0; /* 与上下元素保持距离 */
+            transition: opacity 0.3s ease;
+        }
+
+        .heart-button::after {
+            content: "进入";
+            color: white;
+            font-size: 1em;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .heart-button:hover {
+            opacity: 0.8;
+        }
+
+        /* 消息文本样式 */
+        .message {
+            font-size: 18px;
+            margin: 20px 0; /* 与上下元素保持距离 */
+        }
+
+        /* 版权信息样式 */
+        .footer {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            color: white;
+            background: none;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="content" class="blurred">
+        <div class="title">我爱你，赵晶！</div>
+        <audio autoplay loop>
+            <source src="https://pub-b834d156c0124d6b843f0f4097533829.r2.dev/lifangti/video/%E7%A9%97%E5%AD%90%E5%A4%B1%E6%81%8B.mp3" type="audio/mpeg">
+            Your browser does not support the audio.
+        </audio>
+        <div class="cube-container">
+            <div class="cube">
+                <!-- 外层立方体 -->
+                <div class="outer-cube">
+                    <div class="outer-top">
+                        <img src="https://pub-b834d156c0124d6b843f0f4097533829.r2.dev/lifangti/images/1.jpg" />
+                    </div>
+                    <div class="outer-bottom">
+                        <img src="https://pub-b834d156c0124d6b843f0f4097533829.r2.dev/lifangti/images/2.jpg" />
+                    </div>
+                    <div class="outer-front">
+                        <img src="https://pub-b834d156c0124d6b843f0f4097533829.r2.dev/lifangti/images/3.jpg" />
+                    </div>
+                    <div class="outer-back">
+                        <img src="https://pub-b834d156c0124d6b843f0f4097533829.r2.dev/lifangti/images/4.jpg" />
+                    </div>
+                    <div class="outer-left">
+                        <img src="https://pub-b834d156c0124d6b843f0f4097533829.r2.dev/lifangti/images/5.jpg" />
+                    </div>
+                    <div class="outer-right">
+                        <img src="https://pub-b834d156c0124d6b843f0f4097533829.r2.dev/lifangti/images/6.jpg" />
+                    </div>
+                </div>
+                <!-- 内层立方体 -->
+                <div class="inner-cube">
+                    <div class="inner-top">
+                        <img src="https://pub-b834d156c0124d6b843f0f4097533829.r2.dev/lifangti/images/01.jpg" />
+                    </div>
+                    <div class="inner-bottom">
+                        <img src="https://pub-b834d156c0124d6b843f0f4097533829.r2.dev/lifangti/images/02.jpg" />
+                    </div>
+                    <div class="inner-front">
+                        <img src="https://pub-b834d156c0124d6b843f0f4097533829.r2.dev/lifangti/images/03.jpg" />
+                    </div>
+                    <div class="inner-back">
+                        <img src="https://pub-b834d156c0124d6b843f0f4097533829.r2.dev/lifangti/images/04.jpg" />
+                    </div>
+                    <div class="inner-left">
+                        <img src="https://pub-b834d156c0124d6b843f0f4097533829.r2.dev/lifangti/images/05.jpg" />
+                    </div>
+                    <div class="inner-right">
+                        <img src="https://pub-b834d156c0124d6b843f0f4097533829.r2.dev/lifangti/images/06.jpg" />
+                    </div>
+                </div>
+            </div>
+            <div class="message">
+                温馨提示：鼠标移入移出立方体，将会显示效果！
+            </div>
+            <div class="heart-button" onclick="redirectToUrl()"></div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <div class="d-lg-flex flex-md-fill align-items-lg-center">
+                <div class="d-lg-flex flex-lg-column mr-lg-4">
+                    <div class="footer-copyright text-xs">
+                        <script type="text/javascript">
+                            const copyright = new Date();
+                            const update = copyright.getFullYear();
+                            document.write("Copyright &copy; 2021-" + update + " 杨洪祥版权所有.");
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 高斯模糊层 -->
+    <div id="overlay" class="overlay">
+        <div>
+            <p>你家在哪个村？</p>
+            <input type="text" id="answer" placeholder="请输入答案" />
+            <button onclick="checkAnswer()">提交</button>
+            <p id="error-message" style="color: red; display: none;">请输入正确答案</p>
+        </div>
+    </div>
+
+    <script>
+        const correctAnswer = "赵湾";
+        const cookieName = "auth";
+        const cookieExpiryMinutes = 30;
+
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+
+        function setCookie(name, value, minutes) {
+            const d = new Date();
+            d.setTime(d.getTime() + (minutes * 60 * 1000));
+            const expires = `expires=${d.toUTCString()}`;
+            document.cookie = `${name}=${value}; ${expires}; path=/`;
+        }
+
+        function checkCookie() {
+            const cookieValue = getCookie(cookieName);
+            if (cookieValue) {
+                document.getElementById('overlay').style.display = 'none';
+                document.getElementById('content').classList.remove('blurred');
+            } else {
+                document.getElementById('overlay').classList.add('show');
+                document.getElementById('content').classList.add('blurred');
+            }
+        }
+
+        function checkAnswer() {
+            const userAnswer = document.getElementById('answer').value.trim();
+            if (userAnswer === correctAnswer) {
+                setCookie(cookieName, "true", cookieExpiryMinutes);
+                document.getElementById('overlay').style.display = 'none';
+                document.getElementById('content').classList.remove('blurred');
+            } else {
+                document.getElementById('error-message').style.display = 'block';
+            }
+        }
+
+        function redirectToUrl() {
+            window.location.href = "https://zj2024888.赵晶.我爱你"; // 
+        }
+
+        // 初始化时检查cookie
+        checkCookie();
+    </script>
+</body>
+
+</html>
